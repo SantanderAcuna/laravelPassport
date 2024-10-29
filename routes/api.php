@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\api\ApiController;
+use App\Http\Controllers\api\PermissionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,11 +26,10 @@ Route::post('login', [ApiController::class, "login"]);
 
 
 Route::group([
-'middleware'=>["auth:api"],
-], function(){
+    'middleware' => ["auth:api"],
+], function () {
 
-Route::get('profile', [ApiController::class, "profile"]);
-Route::get('logout', [ApiController::class, "logout"]);
-
-
+    Route::get('profile', [ApiController::class, "profile"]);
+    Route::get('logout', [ApiController::class, "logout"]);
+    Route::resource('permission', PermissionController::class);
 });
